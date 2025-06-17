@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Vitu´s Barber</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  
+ 
+
+  <!-- Header -->
+  <header class="header">
+    <div class="container">
+      <img src="img/logo2.png" alt=" " class="logo-img animate__animated">    
+      <h1 class="logo animate__animated">✂️ VITU´S BARBER 💈</h1>
+      <div class="menu-toggle" id="menu-toggle">
+        <div class="hamburger">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+      </div>
+      <nav class="menu" id="menu">
+        <a href="#cortes" class="nav-link">Cortes</a>
+        <a href="#precos" class="nav-link">Preços</a>
+        <a href="#contato" class="nav-link">Contato</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="overlay animate__animated">
+      <h2>Transforme seu visual com atitude.</h2>
+      <p>Estilo, precisão e experiência em cada corte.</p>
+      <a href="#cortes" class="btn animate__animated">Agende seu corte</a>
+    </div>
+    <div class="scroll-down">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+  </section>
+
+  <!-- Cortes -->
+  <section id="cortes" class="cortes">
+    <h3 class="animate-on-scroll">Nossos Cortes</h3>
+    <div class="cards">
+      <div class="card animate-on-scroll" data-delay="0.1s">
+        <img src="img/corte1.jfif" alt="Fade Americano">
+      </div>
+      <div class="card animate-on-scroll" data-delay="0.2s">
+        <img src="img/corte2.jfif" alt="Degradê Navalhado">
+      </div>
+      <div class="card animate-on-scroll" data-delay="0.3s">
+        <img src="img/corte3.jfif" alt="Barba + Sobrancelha">
+      </div>
+  
+    </div>
+  </section>
+
+  <!-- Tabela de Preços -->
+  <section id="precos" class="tabela-precos">
+    <h3 class="animate-on-scroll">Tabela de Preços</h3>
+    <div class="tabela-container">
+      <div class="coluna">
+        <div class="item animate-on-scroll" data-corte="Corte" data-delay="0.1s">
+          <span>Corte</span>
+          <span>R$ 25</span>
+        </div>
+        <div class="item animate-on-scroll" data-corte="Barba" data-delay="0.2s">
+          <span>Barba</span>
+          <span>R$ 15</span>
+        </div>
+        <div class="item animate-on-scroll" data-corte="Corte Infantil" data-delay="0.3s">
+          <span>Corte Infantil</span>
+          <span>R$ 30</span>
+        </div>
+        <div class="item animate-on-scroll" data-corte="Corte Afro" data-delay="0.4s">
+          <span>Corte Afro</span>
+          <span>R$ 25</span>
+        </div>
+      </div>
+      <div class="coluna">
+        <div class="item animate-on-scroll" data-corte="Freestyle (Desenho)" data-delay="0.1s">
+          <span>Freestyle (Desenho)</span>
+          <span>R$ 5 </span>
+        </div>
+        <div class="item animate-on-scroll" data-corte="Cabelo + Barba" data-delay="0.2s">
+          <span>Cabelo + Barba</span>
+          <span>R$ 30 </span>
+        </div>
+        <div class="item animate-on-scroll" data-corte="Pezinho" data-delay="0.3s">
+          <span>Pezinho</span>
+          <span>R$ 10</span>
+        </div>
+        <div class="item animate-on-scroll" data-corte="Sobrancelha" data-delay="0.4s">
+          <span>Sobrancelha</span>
+          <span>R$ 10</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contato -->
+  <section id="contato" class="contato">
+    <h3 class="animate-on-scroll">Fale com a gente</h3>
+    <form onsubmit="return enviarWhatsApp(event)" class="animate-on-scroll" data-delay="0.2s">
+      <input type="text" id="nome" placeholder="Seu nome" required>
+      <input type="email" id="email" placeholder="Seu e-mail" required>
+      <textarea id="mensagem" placeholder="realizar o " required></textarea>
+      <button type="submit">Enviar pelo WhatsApp</button>
+    </form>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    
+    <div class="social-icons">
+      
+      <!--<a href="https://www.instagram.com/" class="icon animate__animated"><img src="/img/instagram.png" alt="Instagram"></a>-->
+  
+      <a href="https://www.instagram.com/" target="_blank" class="social-button">
+        <img src="img/instagram.png" alt="Instagram"></a>
+
+    </div>
+
+  <p>© 2025 Vitu's Barber. Todos os direitos reservados.</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
