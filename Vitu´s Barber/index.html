@@ -1,136 +1,704 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Vitu´s Barber</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
-  <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vitu's Barber | Estilo & Tradição</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+    <style>
+        /* --- VARIÁVEIS DE CORES --- */
+        :root {
+            --bg-color: #121212;         /* Preto Profundo */
+            --text-color: #ffffff;       /* Branco */
+            --accent-color: #FFD700;     /* Amarelo Ouro/Barber */
+            --nardo-grey: #686A6C;       /* Nardo Grey Sólido */
+            --card-bg: #1E1E1E;          /* Cinza Chumbo para cartões */
+            --transition: all 0.3s ease;
+        }
+
+        /* --- RESET & GERAL --- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            overflow-x: hidden; /* Evita rolagem lateral devido às animações */
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+
+        a { text-decoration: none; color: inherit; }
+        ul { list-style: none; }
+
+        /* --- UTILITÁRIOS --- */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            text-align: center;
+            margin-bottom: 3rem;
+            color: var(--text-color);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .section-title span {
+            color: var(--accent-color);
+            border-bottom: 3px solid var(--nardo-grey);
+        }
+
+        .btn {
+            display: inline-block;
+            background-color: var(--accent-color);
+            color: var(--bg-color);
+            padding: 12px 30px;
+            border-radius: 5px;
+            font-weight: 700;
+            text-transform: uppercase;
+            transition: var(--transition);
+            cursor: pointer;
+            border: none;
+        }
+
+        .btn:hover {
+            background-color: #fff;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(255, 215, 0, 0.2);
+        }
+
+        /* --- HEADER --- */
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background-color: rgba(18, 18, 18, 0.95);
+            padding: 20px 0;
+            z-index: 1000;
+            border-bottom: 1px solid var(--nardo-grey);
+            backdrop-filter: blur(10px);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        /* Classe nova para agrupar Logo e Texto */
+        .brand-wrapper {
+            display: flex;
+            align-items: center;
+            gap: 15px; /* Controla a distância entre a imagem e o texto */
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--accent-color);
+            letter-spacing: 1px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+        }
+
+        .nav-links a {
+            font-weight: 400;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            transition: var(--transition);
+        }
+
+        .nav-links a:hover {
+            color: var(--accent-color);
+        }
+
+        .hamburger {
+            display: none;
+            cursor: pointer;
+            font-size: 1.5rem;
+        }
+
+        /* --- HERO SECTION --- */
+        #home {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('img/hero-bg.jpg'); 
+            background-size: cover;
+            background-position: center;
+            text-align: center;
+            padding-top: 80px;
+        }
+
+        #home:not([style*="url"]) {
+            background: radial-gradient(circle at center, #2c2c2c 0%, #121212 100%);
+        }
+
+        .hero-content h1 {
+            font-size: 4rem;
+            line-height: 1.1;
+            margin-bottom: 20px;
+        }
+
+        .hero-content h1 span {
+            color: var(--accent-color);
+        }
+
+        .hero-content p {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+            color: #ccc;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* --- SOBRE --- */
+        #sobre {
+            padding: 80px 0;
+            background-color: var(--bg-color);
+        }
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            align-items: center;
+        }
+
+        .about-image img {
+            width: 100%;
+            max-width: 500px;
+            border-radius: 10px;
+            border: 2px solid var(--accent-color);
+            box-shadow: 0 5px 15px rgba(255, 215, 0, 0.2);
+        }
+
+        .about-text h2 {
+            font-size: 2.5rem;
+            color: var(--accent-color);
+            margin-bottom: 20px;
+        }
+
+        .about-text p {
+            font-size: 1.1rem;
+            color: #ccc;
+            line-height: 1.8;
+            margin-bottom: 20px;
+        }
+
+        .about-text .qualification {
+            color: var(--accent-color);
+            font-weight: 600;
+            margin-bottom: 10px;
+            font-size: 1.2rem;
+        }
+
+        /* --- GALERIA --- */
+        #galeria {
+            padding: 80px 0;
+            background-color: #1a1a1a;
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .gallery-item {
+            position: relative;
+            height: 300px;
+            overflow: hidden;
+            border-radius: 40px;
+            border: 1px solid var(--nardo-grey);
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.1);
+            filter: grayscale(0%);
+        }
+        
+        .gallery-item img {
+            filter: grayscale(30%);
+        }
+
+        /* --- PREÇOS / SERVIÇOS --- */
+        #servicos {
+            padding: 80px 0;
+        }
+
+        .prices-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .price-card {
+            background-color: var(--card-bg);
+            padding: 30px;
+            border-radius: 10px;
+            border-left: 4px solid var(--accent-color);
+            transition: var(--transition);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .price-card:hover {
+            transform: translateY(-5px);
+            background-color: #252525;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+        }
+
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+            border-bottom: 1px solid var(--nardo-grey);
+            padding-bottom: 15px;
+        }
+
+        .card-header h3 {
+            font-size: 1.4rem;
+            color: var(--text-color);
+        }
+
+        .price {
+            font-size: 1.5rem;
+            color: var(--accent-color);
+            font-weight: 700;
+        }
+
+        .card-desc {
+            font-size: 0.9rem;
+            color: #aaa;
+            margin-bottom: 20px;
+        }
+
+        .btn-select {
+            background-color: transparent;
+            border: 1px solid var(--nardo-grey);
+            color: #fff;
+            padding: 10px;
+            width: 100%;
+            text-align: center;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .btn-select:hover {
+            background-color: var(--accent-color);
+            color: var(--bg-color);
+            border-color: var(--accent-color);
+        }
+
+        /* --- AGENDAMENTO (Contato) --- */
+        #agendamento {
+            padding: 80px 0;
+            background-color: var(--card-bg);
+            border-top: 1px solid var(--nardo-grey);
+        }
+
+        .booking-wrapper {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 50px;
+            justify-content: center;
+        }
+
+        .booking-form {
+            flex: 1;
+            max-width: 500px;
+            background-color: var(--bg-color);
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: var(--accent-color);
+            font-size: 0.9rem;
+        }
+
+        .form-group input, 
+        .form-group select {
+            width: 100%;
+            padding: 12px;
+            background-color: #2c2c2c;
+            border: 1px solid #444;
+            color: #fff;
+            border-radius: 5px;
+            outline: none;
+        }
+
+        .form-group input:focus {
+            border-color: var(--accent-color);
+        }
+
+        .info-box {
+            flex: 1;
+            max-width: 400px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .info-item {
+            margin-bottom: 30px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .info-icon {
+            font-size: 1.5rem;
+            color: var(--accent-color);
+        }
+
+        /* --- FOOTER & REDES SOCIAIS --- */
+        footer {
+            padding: 30px 0;
+            text-align: center;
+            background-color: #000;
+            color: #777;
+            font-size: 0.9rem;
+            border-top: 1px solid #222;
+        }
+
+        .social-link {
+            display: inline-block;
+            margin-bottom: 15px;
+            color: #fff;
+            transition: var(--transition);
+        }
+
+        .social-link svg {
+            width: 30px;
+            height: 30px;
+        }
+
+        .social-link:hover {
+            color: var(--accent-color);
+            transform: translateY(-3px);
+        }
+
+        /* --- RESPONSIVIDADE --- */
+        @media (max-width: 768px) {
+            .hero-content h1 { font-size: 2.5rem; }
+            
+            .nav-links {
+                position: absolute;
+                right: 0px;
+                top: 70px;
+                height: 0;
+                background-color: #121212;
+                flex-direction: column;
+                width: 100%;
+                align-items: center;
+                gap: 20px;
+                overflow: hidden;
+                transition: height 0.3s ease;
+                border-bottom: 1px solid var(--nardo-grey);
+            }
+
+            .nav-links.active {
+                height: 300px;
+                padding: 20px 0;
+            }
+
+            .hamburger { display: block; color: #fff; }
+
+            .about-grid {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .about-image img {
+                max-width: 100%;
+            }
+        }
+    </style>
 </head>
 <body>
-  
- 
 
-  <!-- Header -->
-  <header class="header">
-    <div class="container">
-      <img src="img/logo2.png" alt=" " class="logo-img animate__animated">    
-      <h1 class="logo animate__animated">✂️ VITU´S BARBER 💈</h1>
-      <div class="menu-toggle" id="menu-toggle">
-        <div class="hamburger">
-          <span></span>
-          <span></span>
-          <span></span>
-        </div>
-      </div>
-      <nav class="menu" id="menu">
-        <a href="#cortes" class="nav-link">Cortes</a>
-        <a href="#precos" class="nav-link">Preços</a>
-        <a href="#contato" class="nav-link">Contato</a>
-      </nav>
-    </div>
-  </header>
+    <header>
+        <div class="container">
+            <nav>
+                <div class="brand-wrapper">
+                    <img src="img/logofinal.png" alt="Logo Vitu's Barber" style="height:50px;"/>
+                    <a href="#" class="logo">VITU'S <span style="color: #fff;">BARBER</span></a>
+                </div>
 
-  <!-- Hero -->
-  <section class="hero">
-    <div class="overlay animate__animated">
-      <h2>Transforme seu visual com atitude.</h2>
-      <p>Estilo, precisão e experiência em cada corte.</p>
-      <a href="#contato" class="btn animate__animated">Agende seu corte</a>
-    </div>
-    <div class="scroll-down">
-      <span></span>
-      <span></span>
-      <span></span>
-    </div>
-  </section>
+                <div class="hamburger" id="hamburger">
+                    &#9776;
+                </div>
+                <ul class="nav-links" id="nav-links">
+                    <li><a href="#home">Início</a></li>
+                    <li><a href="#sobre">Sobre</a></li>
+                    <li><a href="#galeria">Trabalhos</a></li>
+                    <li><a href="#servicos">Preços</a></li>
+                    <li><a href="#agendamento">Agendar</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
 
-  <!-- Cortes -->
-  <section id="cortes" class="cortes">
-    <h3 class="animate-on-scroll">Nossos Cortes</h3>
-    <div class="cards">
-      <div class="card animate-on-scroll" data-delay="0.1s">
-        <img src="img/corte1.jfif" alt="Fade Americano">
-      </div>
-      <div class="card animate-on-scroll" data-delay="0.2s">
-        <img src="img/corte5.jfif" alt="Degradê Navalhado">
-      </div>
-      <div class="card animate-on-scroll" data-delay="0.3s">
-        <img src="img/corte45.jpg" alt="Barba + Sobrancelha">
-      </div>
-  
-    </div>
-  </section>
+    <section id="home">
+        <div class="container hero-content" data-aos="fade-up" data-aos-duration="1500">
+            <h1>O MELHOR CORTE<br><span>DO SEU DIA</span></h1>
+            <p>Tradição, navalha afiada e um ambiente feito para você relaxar. Renove seu estilo na Vitu's Barber.</p>
+            <a href="#servicos" class="btn">Agendar Agora</a>
+        </div>
+    </section>
 
-  <!-- Tabela de Preços -->
-  <section id="precos" class="tabela-precos">
-    <h3 class="animate-on-scroll">Tabela de Preços</h3>
-    <div class="tabela-container">
-      <div class="coluna">
-        <div class="item animate-on-scroll" data-corte="Corte" data-delay="0.1s">
-          <span>Corte</span>
-          <span>R$ 25</span>
-        </div>
-        <div class="item animate-on-scroll" data-corte="Barba" data-delay="0.2s">
-          <span>Barba</span>
-          <span>R$ 15</span>
-        </div>
-        <div class="item animate-on-scroll" data-corte="Corte Infantil" data-delay="0.3s">
-          <span>Corte Infantil</span>
-          <span>R$ 30</span>
-        </div>
-        <div class="item animate-on-scroll" data-corte="Corte Afro" data-delay="0.4s">
-          <span>Corte Afro</span>
-          <span>R$ 25</span>
-        </div>
-      </div>
-      <div class="coluna">
-        <div class="item animate-on-scroll" data-corte="Freestyle (Desenho)" data-delay="0.1s">
-          <span>Freestyle (Desenho)</span>
-          <span>R$ 5 </span>
-        </div>
-        <div class="item animate-on-scroll" data-corte="Cabelo + Barba" data-delay="0.2s">
-          <span>Cabelo + Barba</span>
-          <span>R$ 30 </span>
-        </div>
-        <div class="item animate-on-scroll" data-corte="Pezinho" data-delay="0.3s">
-          <span>Pezinho</span>
-          <span>R$ 10</span>
-        </div>
-        <div class="item animate-on-scroll" data-corte="Sobrancelha" data-delay="0.4s">
-          <span>Sobrancelha</span>
-          <span>R$ 10</span>
-        </div>
-      </div>
-    </div>
-  </section>
+    <section id="sobre">
+        <div class="container">
+            <div class="about-grid">
+                
+                <div class="about-text" data-aos="fade-left" data-aos-duration="1000">
+                    <h2>Sobre o <span>Profissional</span></h2>
+                    <p class="qualification">Victor Dias Honorio da Luz</p>
+                    <p>
+                        Profissional certificado e especializado desde <b>2019</b> em cortes masculinos e design de barba.
+                        Sua dedicação à excelência é comprovada pela certificação no prestigiado <strong>Instituto Embelleze</strong>, onde concluiu com distinção o curso "Barbeiro Academy Hair".
+                    </p>
+                    <p>
+                        Com domínio técnico apurado em tesoura e máquina, Victor oferece um atendimento personalizado, garantindo que cada cliente saia da cadeira com a autoestima renovada.
+                    </p>
+                    <a href="#agendamento" class="btn">Marque seu Horário</a>
+                </div>
 
-  <!-- Contato -->
-  <section id="contato" class="contato">
-    <h3 class="animate-on-scroll">Fale com a gente</h3>
-    <form onsubmit="return enviarWhatsApp(event)" class="animate-on-scroll" data-delay="0.2s">
-      <input type="text" id="nome" placeholder="Seu nome" required>
-      <input type="email" id="email" placeholder="Seu e-mail" required>
-      <textarea id="mensagem" placeholder="realizar o " required></textarea>
-      <button type="submit">Enviar pelo WhatsApp</button>
-    </form>
-  </section>
+                <div class="about-image" data-aos="fade-right" data-aos-duration="1000">
+                    <img src="img/certificado2.jpg" alt="Certificado de Victor Dias Honorio da Luz">
+                </div>
+            </div>
+        </div>
+    </section>
 
-  <!-- Footer -->
-  <footer class="footer">
-    
-    <div class="social-icons">
-      
-      <!--<a href="https://www.instagram.com/" class="icon animate__animated"><img src="/img/instagram.png" alt="Instagram"></a>-->
-  
-      <a href="https://www.instagram.com/vitu_s_barber?igsh=OHBvNGFwenRzMDho&utm_source=qr" target="_blank" class="social-button">
-        <img src="img/instagram.png" alt="Instagram"></a>
+    <section id="galeria">
+        <div class="container">
+            <h2 class="section-title" data-aos="fade-up">Nossos <span>Cortes</span></h2>
+            <div class="gallery-grid">
+                <div class="gallery-item" data-aos="zoom-in" data-aos-delay="0"><img src="img/corte1.jpeg" alt="Corte Degradê" onerror="this.src='https://placehold.co/400x400/1e1e1e/FFF?text=Foto+Corte+1'"></div>
+                <div class="gallery-item" data-aos="zoom-in" data-aos-delay="100"><img src="img/corte2.jpeg" alt="Barba Modelada" onerror="this.src='https://placehold.co/400x400/1e1e1e/FFF?text=Foto+Corte+2'"></div>
+                <div class="gallery-item" data-aos="zoom-in" data-aos-delay="200"><img src="img/corte3.jfif" alt="Corte Social" onerror="this.src='https://placehold.co/400x400/1e1e1e/FFF?text=Foto+Corte+3'"></div>
+                <div class="gallery-item" data-aos="zoom-in" data-aos-delay="300"><img src="img/corte4.jpeg" alt="Pigmentação" onerror="this.src='https://placehold.co/400x400/1e1e1e/FFF?text=Foto+Corte+4'"></div>
+            </div>
+        </div>
+    </section>
 
-    </div>
+    <section id="servicos">
+        <div class="container">
+            <h2 class="section-title" data-aos="fade-up">Tabela de <span>Preços</span></h2>
+            <div class="prices-grid">
+                
+                <div class="price-card" data-aos="fade-up" data-aos-delay="0">
+                    <div>
+                        <div class="card-header">
+                            <h3>Corte Simples</h3>
+                            <span class="price">R$ 30,00</span>
+                        </div>
+                        <p class="card-desc">Corte na tesoura ou máquina, acabamento impecável.</p>
+                    </div>
+                    <button class="btn-select" onclick="selecionarServico('Corte Simples')">Escolher</button>
+                </div>
 
-  <p>© 2025 Vitu's Barber. Todos os direitos reservados.</p>
-  </footer>
+                <div class="price-card" data-aos="fade-up" data-aos-delay="100">
+                    <div>
+                        <div class="card-header">
+                            <h3>Barba Completa</h3>
+                            <span class="price">R$ 20,00</span>
+                        </div>
+                        <p class="card-desc">Barboterapia, toalha quente e alinhamento na navalha.</p>
+                    </div>
+                    <button class="btn-select" onclick="selecionarServico('Barba Completa')">Escolher</button>
+                </div>
 
-  <script src="script.js"></script>
+                <div class="price-card" data-aos="fade-up" data-aos-delay="200">
+                    <div>
+                        <div class="card-header">
+                            <h3>Cabelo + Barba</h3>
+                            <span class="price">R$ 40,00</span>
+                        </div>
+                        <p class="card-desc">O combo completo para renovar o visual.</p>
+                    </div>
+                    <button class="btn-select" onclick="selecionarServico('Cabelo + Barba')">Escolher</button>
+                </div>
+
+                <div class="price-card" data-aos="fade-up" data-aos-delay="300">
+                    <div>
+                        <div class="card-header">
+                            <h3>Pezinho / Acabamento</h3>
+                            <span class="price">R$ 10,00</span>
+                        </div>
+                        <p class="card-desc">Manutenção dos contornos e nuca.</p>
+                    </div>
+                    <button class="btn-select" onclick="selecionarServico('Pezinho')">Escolher</button>
+                </div>
+
+                 <div class="price-card" data-aos="fade-up" data-aos-delay="400">
+                    <div>
+                        <div class="card-header">
+                            <h3>Sobrancelha</h3>
+                            <span class="price">R$ 10,00</span>
+                        </div>
+                        <p class="card-desc">Design e limpeza dos fios com navalha.</p>
+                    </div>
+                    <button class="btn-select" onclick="selecionarServico('Sobrancelha')">Escolher</button>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <section id="agendamento">
+        <div class="container" data-aos="fade-up">
+            <h2 class="section-title">Agende seu <span>Horário</span></h2>
+            
+            <div class="booking-wrapper">
+                <div class="info-box">
+                    <div class="info-item">
+                        <div class="info-icon">📍</div>
+                        <div>
+                            <h4>Localização</h4>
+                            <p>Rua Alvares Correa, 1015 - Jordanópolis, São Paulo</p>
+                        </div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-icon">🕒</div>
+                        <div>
+                            <h4>Horário</h4>
+                            <p>Seg - Sex: 18:00 às 21:00</p>
+                            <p>Sáb - Dom: 09:00 às 20:00</p>
+                        </div>
+                    </div>
+                    
+                    <p style="color: #888; margin-top: 20px;">
+                        Preencha o formulário e você será redirecionado para o WhatsApp com a mensagem pronta!
+                    </p>
+                </div>
+
+                <div class="booking-form">
+                    <div class="form-group">
+                        <label for="nome">Seu Nome</label>
+                        <input type="text" id="nome" placeholder="Digite seu nome">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="servico">Serviço Selecionado</label>
+                        <input type="text" id="servico" placeholder="Selecione na tabela acima" readonly>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="data">Data e Hora Preferencial</label>
+                        <input type="datetime-local" id="data">
+                    </div>
+
+                    <button class="btn" style="width: 100%;" onclick="agendarWhatsApp()">Confirmar no WhatsApp</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <a href="https://www.instagram.com/vitu_s_barber" target="_blank" class="social-link" aria-label="Instagram">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+                    <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+                    <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+                </svg>
+            </a>
+            <p>&copy; 2025 Vitu's Barber. Todos os direitos reservados.</p>
+        </div>
+    </footer>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        // Inicializa a biblioteca AOS
+        AOS.init({
+            once: true, // A animação acontece apenas uma vez ao descer
+        });
+
+        // --- CONFIGURAÇÃO DO WHATSAPP ---
+        const phoneBarber = "5511960128667"; 
+
+        // Menu Mobile Toggle
+        const hamburger = document.getElementById('hamburger');
+        const navLinks = document.getElementById('nav-links');
+
+        hamburger.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+        });
+
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('active');
+            });
+        });
+
+        function selecionarServico(nomeServico) {
+            const inputServico = document.getElementById('servico');
+            inputServico.value = nomeServico;
+            document.getElementById('agendamento').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function agendarWhatsApp() {
+            const nome = document.getElementById('nome').value;
+            const servico = document.getElementById('servico').value;
+            const dataInput = document.getElementById('data').value;
+
+            if (!nome || !servico || !dataInput) {
+                alert("Por favor, preencha todos os campos antes de enviar.");
+                return;
+            }
+
+            const dataObj = new Date(dataInput);
+            const dataFormatada = dataObj.toLocaleDateString('pt-BR', { day: '2-digit', month: '2-digit' });
+            const horaFormatada = dataObj.toLocaleTimeString('pt-BR', { hour: '2-digit', minute: '2-digit' });
+
+            const mensagem = `Olá, Vitu's Barber!%0A%0AGostaria de agendar um horário.%0A%0A *Nome:* ${nome}%0A *Serviço:* ${servico}%0A *Data:* ${dataFormatada}%0A *Hora:* ${horaFormatada}`;
+
+            const url = `https://wa.me/${phoneBarber}?text=${mensagem}`;
+            window.open(url, '_blank');
+        }
+    </script>
 </body>
 </html>
